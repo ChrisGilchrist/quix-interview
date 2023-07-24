@@ -15,4 +15,29 @@
   <button (click)="helloWorld()">Hello world</button>
 
   <button (click)="helloWorldFromServer()">Hello world from server</button>
+
+  <button (click)="getData()">Retrieve Data FroM Server</button>
+
+
+  <div *ngIf="data | async as data">
+
+    <table>
+      <thead>
+        <tr>
+          <th>Timestamp</th>
+          <th>Speed</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let timestamps of data.timestamps; let i = index">
+          <td>{{ timestamps }}</td>
+          <td>{{ data.numericValues.Speed[i] }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- {{ data | json }} -->
+
+  </div>
+
 </div>

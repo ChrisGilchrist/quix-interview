@@ -1,5 +1,5 @@
 import {createReducer, on} from '@ngrx/store';
-import {helloWorld, loadHelloWorld} from "./app.actions";
+import {getDataSuccess, helloWorld, loadHelloWorld} from "./app.actions";
 
 
  export interface AppState {
@@ -13,6 +13,8 @@ const _appReducer = createReducer(
   initialState,
   on(helloWorld, (state, payload) => ({...state, message: payload.message })),
   on(loadHelloWorld, (state) => ({...state, message: "Loading..." })),
+
+  on(getDataSuccess, (state, payload) => ({...state, data: payload.data })),
 );
 
 export function appReducer(state: any, action: any) {

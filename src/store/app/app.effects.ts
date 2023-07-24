@@ -1,8 +1,9 @@
 import {Injectable} from "@angular/core";
 import {Actions, createEffect, ofType} from "@ngrx/effects";
-import {helloWorld, loadHelloWorld} from "./app.actions";
+import {getData, getDataSuccess, helloWorld, loadHelloWorld} from "./app.actions";
 import {concatMap, delay, of} from "rxjs";
 import {map} from "rxjs/operators";
+import { DataService } from "src/app/data.service";
 
 @Injectable()
 export class AppEffects {
@@ -14,7 +15,15 @@ export class AppEffects {
     )
   );
 
+  loadData = createEffect(() => this.actions$.pipe(
+      ofType(getData),
+      concatMap(_ => this.dataService.getData()),
+      map(data => getDataSuccess({data}))
+    )
+  );
+
   constructor(
-    private actions$: Actions
+    private actions$: Actions,
+    private dataService: DataService
   ) {}
 }

@@ -5,3 +5,5 @@ const selectState = (state: any) => {
 };
 
 export const selectMessage = createSelector(selectState, p => p?.message);
+
+export const selectData = createSelector(selectState, p => p?.data);
